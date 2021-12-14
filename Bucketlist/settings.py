@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'bucketlist',
-    'USER': 'postgres',
-    'PASSWORD': 'ADMIN13787',
-    'HOST': 'localhost'
+    'USER': 'ADMIN13787',
+    'PASSWORD': 'Server234534',
+    'HOST': 'is415-jbb-server.postgres.database.azure.com'
 
     }
 }
