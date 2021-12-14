@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+    <!-- Contact Section-->
+        <section class="page-section" id="addform">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <br>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">What country is on your bucketlist?</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
+                        <form id="form" name="form" method="post" action="{% url 'addHandler' %}">
+                            {% csrf_token %}
+                            <!-- Name input--> 
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="first_name" name="first_name" type="text" placeholder="Enter your first name..." data-sb-validations="required" required />
+                                <label for="first_name">First Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="first_name:required">A first name is required.</div>
+                            </div>
+                            <!-- Email address input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Enter your last name..." data-sb-validations="required"  required/>
+                                <label for="last_name">Last Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="last_name:required">A last name is required.</div>
+                            </div>
+                            <!-- Phone number input-->
+                            <div class="form-floating mb-3 ">                                
+                                <label for="country">Country</label><br><br><br>
+                                <div>
+                                    <select class="form-control" id="country" name="country" type="text" data-sb-validations="required" style="font-size: 20px" required>
+                                        <option> </option>
+                                        {% for country in countries %}
+                                            <option value={{country.id}} >{{country.country_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback" data-sb-feedback="country:required">A country is required.</div>
+                            </div>
+                            <!-- Message input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="description" name="description" type="text" placeholder="Enter your description here..." style="height: 10rem"></textarea>
+                                <label for="description">Why do you want to go?</label>
+                            </div>
+                       
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <!-- Submit Button-->
+                            <button class="btn btn-primary btn-xl" id="submitButton" type="submit" >Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- See available countries!-->
+        <section class="page-section">
+            <div class="container">
+                <br>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"> The Countries You Can Visit! <h2>
+                    <ul>
+                        {% for country in countries %}
+                        <li> {{ country.country_name }}
+                        {% endfor %}
+                    </ul>
+{%endblock%}
