@@ -23,12 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 'django-insecure-rd0!24t#%eu^8%08-8p%d$hz8k&j+r8ce5xxr$m1f6-6c&!%zj'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST-USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'is114-bucketlist.herokuapp.com']
 
 
 # Application definition
@@ -83,12 +87,11 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'bucketlist',
-    'USER': 'ADMIN13787',
-    'PASSWORD': 'Server234534',
-    'HOST': 'is415-jbb-server.postgres.database.azure.com'
+    'USER': 'postgres',
+    'PASSWORD': 'ADMIN13787',
+    'HOST': 'localhost'
     }
 }
-
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -132,11 +135,13 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bucketlist/static')
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
