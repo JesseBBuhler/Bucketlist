@@ -1,1 +1,1 @@
-web: gunicorn travelApp.wsgi
+web: gunicorn Bucketlist.wsgi
