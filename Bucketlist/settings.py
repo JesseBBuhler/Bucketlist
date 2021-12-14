@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'travelApp.apps.TravelappConfig',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
